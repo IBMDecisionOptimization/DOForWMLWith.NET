@@ -1,0 +1,13 @@
+/packages/
+**/obj/**
+/bin/
+**/bin/**
+/*/obj/
+.vs/*
+*.exe
+*.dll
+*.force
+*.cache
+*.lp
+*.suo
+*.v2
