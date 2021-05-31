@@ -105,6 +105,8 @@ namespace COM.IBM.ML.ILOG
                     return "do_12.9";
                 case Runtime.DO_12_10:
                     return "do_12.9";
+                case Runtime.DO_20_1:
+                    return "do_20.1";
             }
             throw new System.Exception("GetShortName error " + r);
         }
@@ -129,6 +131,14 @@ namespace COM.IBM.ML.ILOG
                     return "do-opl_12.10";
                 case ModelType.DOCPLEX_12_10:
                     return "do-docplex_12.10";
+                case ModelType.CPLEX_20_1:
+                    return "do-cplex_20.1";
+                case ModelType.CPO_20_1:
+                    return "do-cpo_20.1";
+                case ModelType.OPL_20_1:
+                    return "do-opl_20.1";
+                case ModelType.DOCPLEX_20_1:
+                    return "do-docplex_20.1";
             }
             throw new System.Exception("GetShortName error " + m);
         }
