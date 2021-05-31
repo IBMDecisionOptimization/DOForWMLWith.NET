@@ -6,7 +6,8 @@ namespace COM.IBM.ML.ILOG
     public enum Runtime
     {
         DO_12_9,
-        DO_12_10
+        DO_12_10,
+        DO_20_1
     };
 
     public enum ModelType
@@ -18,7 +19,11 @@ namespace COM.IBM.ML.ILOG
         CPLEX_12_10,
         CPO_12_10,
         OPL_12_10,
-        DOCPLEX_12_10
+        DOCPLEX_12_10,
+        CPLEX_20_1,
+        CPO_20_1,
+        OPL_20_1,
+        DOCPLEX_20_1
     };
 
     public enum TShirtSize
