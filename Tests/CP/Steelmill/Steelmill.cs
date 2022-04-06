@@ -66,7 +66,7 @@ namespace Steelmill
             log4net.ILog logger =
                 log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-            CP cp = new WmlCP(Credentials.GetCredentials(), Runtime.DO_12_10, TShirtSize.M, 1);
+            CP cp = new WmlCP(Credentials.GetCredentials(), Runtime.DO_20_1, TShirtSize.M, 1);
             int weightSum = 0;
             for (int o = 0; o < nbOrders; o++)
                 weightSum += weight[o];

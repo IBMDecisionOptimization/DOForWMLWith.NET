@@ -429,7 +429,7 @@ public sealed class SocpEx1
         Cplex cplex = null;
         try
         {
-            cplex = new WmlCplex(Credentials.GetCredentials(), Runtime.DO_12_10, TShirtSize.M, 1);
+            cplex = new WmlCplex(Credentials.GetCredentials(), Runtime.DO_20_1, TShirtSize.M, 1);
 
             // Initialize the two special (empty) marker ranges.
             NOT_CONE_HEAD = cplex.Range(0, 0);

@@ -7,7 +7,8 @@ namespace COM.IBM.ML.ILOG
     {
         DO_12_9,
         DO_12_10,
-        DO_20_1
+        DO_20_1,
+        DO_22_1
     };
 
     public enum ModelType
@@ -23,13 +24,18 @@ namespace COM.IBM.ML.ILOG
         CPLEX_20_1,
         CPO_20_1,
         OPL_20_1,
-        DOCPLEX_20_1
+        DOCPLEX_20_1,
+        CPLEX_22_1,
+        CPO_22_1,
+        OPL_22_1,
+        DOCPLEX_22_1
     };
 
     public enum TShirtSize
     {
         S,
         M,
+        L,
         XL
     };
 

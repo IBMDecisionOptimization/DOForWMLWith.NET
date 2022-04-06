@@ -86,7 +86,7 @@ namespace ppp
                 numPeriods = Int32.Parse(args[0]);
 
             
-            CP cp = new WmlCP(Credentials.GetCredentials(), Runtime.DO_12_10, TShirtSize.M, 1);
+            CP cp = new WmlCP(Credentials.GetCredentials(), Runtime.DO_20_1, TShirtSize.M, 1);
             //
             // Variables
             //

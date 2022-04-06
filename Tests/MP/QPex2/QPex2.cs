@@ -47,7 +47,7 @@ public class QPex2
 
         try
         {
-            Cplex cplex = new WmlCplex(Credentials.GetCredentials(), Runtime.DO_12_10, TShirtSize.M, 1);
+            Cplex cplex = new WmlCplex(Credentials.GetCredentials(), Runtime.DO_20_1, TShirtSize.M, 1);
 
             CreateQPModel(cplex);
             // solve the QP problem

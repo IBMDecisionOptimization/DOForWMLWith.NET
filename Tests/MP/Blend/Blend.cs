@@ -68,7 +68,7 @@ public class Blend
         logger.Info("Credentials are " + Credentials.GetCredentials());
         try
         {
-            Cplex cplex = new WmlCplex(Credentials.GetCredentials(), Runtime.DO_12_10, TShirtSize.M, 1);
+            Cplex cplex = new WmlCplex(Credentials.GetCredentials(), Runtime.DO_20_1, TShirtSize.M, 1);
 
             INumVar[] m = cplex.NumVarArray(_nbElements, 0.0, double.MaxValue);
             INumVar[] r = cplex.NumVarArray(_nbRaw, 0.0, double.MaxValue);
