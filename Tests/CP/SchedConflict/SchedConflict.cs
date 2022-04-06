@@ -174,7 +174,7 @@ public class SchedConflict
         log4net.Config.BasicConfigurator.Configure();
         log4net.ILog logger =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        cp = new WmlCP(Credentials.GetCredentials(), Runtime.DO_12_10, TShirtSize.M, 1);
+        cp = new WmlCP(Credentials.GetCredentials(), Runtime.DO_20_1, TShirtSize.M, 1);
         String fileName = "../../../../../../Resources/cpo/sched_conflict.data";
         int failLimit = 10000;
         if (args.Length > 0)

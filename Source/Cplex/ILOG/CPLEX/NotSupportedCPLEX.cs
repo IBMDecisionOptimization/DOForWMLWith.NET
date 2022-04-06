@@ -152,34 +152,6 @@ namespace ILOG.CPLEX
         }
 
 
-        public override void CopyVMConfig(String var1)
-        {
-            logger.Error(notSupportedError + " copyVMConfig");
-            throw new ILOG.Concert.Exception(notSupportedError);
-        }
-
-
-        public override void ReadVMConfig(String var1)
-        {
-            logger.Error(notSupportedError + " readVMConfig");
-            throw new ILOG.Concert.Exception(notSupportedError);
-        }
-
-
-        public override bool HasVMConfig()
-        {
-            logger.Error(notSupportedError + " hasVMConfig");
-            throw new ILOG.Concert.Exception(notSupportedError);
-        }
-
-
-        public override void DelVMConfig()
-        {
-            logger.Error(notSupportedError + " delVMConfig");
-            throw new ILOG.Concert.Exception(notSupportedError);
-        }
-
-
         public override Goal EqGoal(INumExpr var1, double var2)
         {
             logger.Error(notSupportedError + " eqGoal");

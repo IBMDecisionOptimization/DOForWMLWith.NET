@@ -53,7 +53,7 @@ public class Talent
 
     public Talent(String fileName)
     {        
-        cp = new WmlCP(Credentials.GetCredentials(), Runtime.DO_12_10, TShirtSize.M, 1); this.ReadData(fileName);
+        cp = new WmlCP(Credentials.GetCredentials(), Runtime.DO_20_1, TShirtSize.M, 1); this.ReadData(fileName);
         this.BuildModel();
     }
 

@@ -72,7 +72,7 @@ namespace SchedGoalProg
 
         public SchedGoalProg(String fileName)
         {
-            cp = new WmlCP(Credentials.GetCredentials(), Runtime.DO_12_10, TShirtSize.M, 1); CreateModel(fileName);
+            cp = new WmlCP(Credentials.GetCredentials(), Runtime.DO_20_1, TShirtSize.M, 1); CreateModel(fileName);
         }
 
         class DataReader

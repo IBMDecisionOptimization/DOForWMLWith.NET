@@ -72,7 +72,7 @@ namespace COM.IBM.ML.ILOG.V4
 
 
         public ConnectorImpl(Credentials creds) :
-                this(creds, Runtime.DO_12_10, TShirtSize.M, 1, null)
+                this(creds, Runtime.DO_20_1, TShirtSize.M, 1, null)
         {
         }
 

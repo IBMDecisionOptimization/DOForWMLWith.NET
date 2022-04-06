@@ -31,7 +31,7 @@ public class MIPex1
         logger.Info("Credentials are " + Credentials.GetCredentials());
         try
         {
-            Cplex cplex = new WmlCplex(Credentials.GetCredentials(), Runtime.DO_12_10, TShirtSize.M, 1);
+            Cplex cplex = new WmlCplex(Credentials.GetCredentials(), Runtime.DO_20_1, TShirtSize.M, 1);
 
             INumVar[][] var = new INumVar[1][];
             IRange[][] rng = new IRange[1][];

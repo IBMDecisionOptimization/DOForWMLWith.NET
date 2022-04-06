@@ -74,7 +74,7 @@ namespace Alloc
                 numPeriods = Int32.Parse(args[0]);
 
 
-            CP cp = new WmlCP(Credentials.GetCredentials(), Runtime.DO_12_10, TShirtSize.M, 1);
+            CP cp = new WmlCP(Credentials.GetCredentials(), Runtime.DO_20_1, TShirtSize.M, 1);
             dist[0] = new int[] { 16, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0, 0, 0, 2, 2, 1, 1, 1 };
             dist[1] = new int[] { 1, 16, 2, 0, 0, 0, 0, 0, 2, 2, 1, 1, 1, 2, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 };
             dist[2] = new int[] { 1, 2, 16, 0, 0, 0, 0, 0, 2, 2, 1, 1, 1, 2, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 };

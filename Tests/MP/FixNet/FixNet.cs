@@ -60,7 +60,7 @@ public sealed class FixNet
         logger.Info("Starting the example");
 
         logger.Info("Credentials are " + Credentials.GetCredentials());
-        Cplex cplex = new WmlCplex(Credentials.GetCredentials(), Runtime.DO_12_10, TShirtSize.M, 1);
+        Cplex cplex = new WmlCplex(Credentials.GetCredentials(), Runtime.DO_20_1, TShirtSize.M, 1);
 
         try
         {

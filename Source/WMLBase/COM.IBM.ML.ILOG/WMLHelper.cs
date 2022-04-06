@@ -80,6 +80,10 @@ namespace COM.IBM.ML.ILOG
                     return ModelType.CPLEX_12_9;
                 case Runtime.DO_12_10:
                     return ModelType.CPLEX_12_10;
+                case Runtime.DO_20_1:
+                    return ModelType.CPLEX_20_1;
+                case Runtime.DO_22_1:
+                    return ModelType.CPLEX_22_1;
             }
             throw new System.Exception("Runtime " + r + " is not supported currently");
         }
@@ -92,6 +96,10 @@ namespace COM.IBM.ML.ILOG
                     return ModelType.CPO_12_9;
                 case Runtime.DO_12_10:
                     return ModelType.CPO_12_10;
+                case Runtime.DO_20_1:
+                    return ModelType.CPO_20_1;
+                case Runtime.DO_22_1:
+                    return ModelType.CPO_22_1;
             }
             throw new System.Exception("Runtime " + r + " is not supported currently");
         }
@@ -104,9 +112,11 @@ namespace COM.IBM.ML.ILOG
                 case Runtime.DO_12_9:
                     return "do_12.9";
                 case Runtime.DO_12_10:
-                    return "do_12.9";
+                    return "do_12.10";
                 case Runtime.DO_20_1:
                     return "do_20.1";
+                case Runtime.DO_22_1:
+                    return "do_22.1";
             }
             throw new System.Exception("GetShortName error " + r);
         }
@@ -139,6 +149,14 @@ namespace COM.IBM.ML.ILOG
                     return "do-opl_20.1";
                 case ModelType.DOCPLEX_20_1:
                     return "do-docplex_20.1";
+                case ModelType.CPLEX_22_1:
+                    return "do-cplex_22.1";
+                case ModelType.CPO_22_1:
+                    return "do-cpo_22.1";
+                case ModelType.OPL_22_1:
+                    return "do-opl_22.1";
+                case ModelType.DOCPLEX_22_1:
+                    return "do-docplex_22.1";
             }
             throw new System.Exception("GetShortName error " + m);
         }
