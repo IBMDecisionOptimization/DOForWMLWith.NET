@@ -48,9 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="COM.IBM.ML.ILOG\WMLHelper.cs" />
-    <Compile Include="COM.IBM.ML.ILOG\COSConnector.cs" />
     <Compile Include="COM.IBM.ML.ILOG\Credentials.cs" />
-    <Compile Include="COM.IBM.ML.ILOG\V4\COSConnectorImpl.cs" />
     <Compile Include="COM.IBM.ML.ILOG\TokenHandler.cs" />
     <Compile Include="COM.IBM.ML.ILOG\V4\ConnectorImpl.cs" />
     <Compile Include="COM.IBM.ML.ILOG\Job.cs" />

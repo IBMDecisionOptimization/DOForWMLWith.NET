@@ -22,8 +22,8 @@ public class PrepareWML
                     Credentials.GetCredentials()
             };
             Runtime[] runtimes = new Runtime[]{
-                    Runtime.DO_12_10,
-                    Runtime.DO_12_9
+                    Runtime.DO_20_1,
+                    Runtime.DO_12_10
             };
             TShirtSize[] sizes = new TShirtSize[]{
                     TShirtSize.M
