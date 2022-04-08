@@ -67,11 +67,6 @@ namespace COM.IBM.ML.ILOG
             return new ConnectorImpl(creds);
         }
 
-        public static COSConnector GetCOSConnector(Credentials creds)
-        {
-            return new COSConnectorImpl(creds);
-        }
-
         public static ModelType GetCPLEXModelType(Runtime r)
         {
             switch (r)

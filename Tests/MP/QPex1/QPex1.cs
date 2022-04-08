@@ -37,7 +37,7 @@ public class QPex1
             var WML_HOST = "https://us-south.ml.cloud.ibm.com";
             var WML_API_KEY = System.Environment.GetEnvironmentVariable("WML_API_KEY");
             var WML_SPACE_ID = System.Environment.GetEnvironmentVariable("WML_SPACE_ID");
-            var WML_VERSION = "2020-08-07";
+            var WML_VERSION = "2021-06-01";
             var PLATFORM_HOST = "api.dataplatform.cloud.ibm.com";
 
             credentials.Add(Credentials.IAM_HOST, IAM_HOST);
@@ -48,7 +48,7 @@ public class QPex1
             credentials.Add(Credentials.WML_VERSION, WML_VERSION);
             credentials.Add(Credentials.PLATFORM_HOST, PLATFORM_HOST);
 
-            Runtime runtime = Runtime.DO_12_10;
+            Runtime runtime = Runtime.DO_20_1;
             TShirtSize size = TShirtSize.M;
             int numNodes = 1;
 

@@ -49,18 +49,6 @@ namespace COM.IBM.ML.ILOG
         public static string CPD_URL = "service.cpd.url";
         public static string PLATFORM_HOST = "service.platform.host";
 
-        public static string COS_ENDPOINT = "service.cos.endpoint";
-        public static string COS_BUCKET = "service.cos.bucket";
-        public static string COS_ACCESS_KEY_ID = "service.cos.access_key_id";
-        public static string COS_SECRET_ACCESS_KEY = "service.cos.secret_access_key";
-
-        public static string[] COSFields = new String[]{
-            COS_ACCESS_KEY_ID,
-            COS_BUCKET,
-            COS_ENDPOINT,
-            COS_SECRET_ACCESS_KEY
-};
-
         public static String[] CPDFields = new String[]{
             CPD_USERNAME,
             CPD_PASSWORD,
@@ -98,15 +86,6 @@ namespace COM.IBM.ML.ILOG
             return true;
         }
 
-        private static bool HasCOSConfig()
-        {
-            foreach (String key in COSFields)
-            {
-                if (ConfigurationManager.AppSettings.AllKeys.Contains(key) == false)
-                    return false;
-            }
-            return true;
-        }
         public static Credentials GetCredentials()
         {
             Credentials creds = null;
@@ -118,13 +97,6 @@ namespace COM.IBM.ML.ILOG
                 creds = GetPublicCredentials();
             if (creds == null)
                 throw new System.Exception("unknown config type.");
-            if (HasCOSConfig())
-            {
-                foreach (String key in COSFields)
-                {
-                    creds.Add(key, WMLHelper.GetSetting(key));
-                }
-            }
             return creds;
         }
 
