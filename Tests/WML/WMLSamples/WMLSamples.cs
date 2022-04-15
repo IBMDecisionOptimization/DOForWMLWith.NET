@@ -21,9 +21,14 @@ public class WMLSamples
         logger.Info("Starting the example");
         try
         {
-            LPFlow();
+            LPFlow(false);
+            LPFlow(true);
 
-            FullDietPythonFlow();
+            FullDietPythonFlow(true);
+            FullDietPythonFlow(false);
+
+            FullWarehouseOPLFlow(false);
+            FullWarehouseOPLFlow(true);
         }
         catch (System.Exception e)
         {
@@ -33,6 +38,16 @@ public class WMLSamples
 
     private static log4net.ILog logger = null;
     private static Credentials CREDENTIALS = Credentials.GetCredentials();
+    static String GetLogFromCOS(COSConnector cos)
+    {
+        return GetFileFromCOS(cos, "log.txt");
+    }
+    static String GetFileFromCOS(COSConnector cos, String fileName)
+    {
+        String content = cos.GetFile(fileName);
+        content = content.Replace("\\r", "\n");
+        return content;
+    }
 
     static String GetLogFromJob(Job job)
     {
@@ -58,9 +73,10 @@ public class WMLSamples
         return deployment_id;
     }
 
-    static void FullDietPythonFlow()
+    static void FullDietPythonFlow(bool useOutputDataReferences)
     {
         Connector wml = null;
+        COSConnector cos = null;
         try
         {
             logger.Info("Full flow with Diet");
@@ -72,13 +88,28 @@ public class WMLSamples
             input_data.Add(CreateDataFromCSV("diet_food.csv", "diet_food.csv"));
             input_data.Add(CreateDataFromCSV("diet_food_nutrients.csv", "diet_food_nutrients.csv"));
             input_data.Add(CreateDataFromCSV("diet_nutrients.csv", "diet_nutrients.csv"));
+            JArray output_data_references = null;
+            if (useOutputDataReferences)
+            {
+                cos = WMLHelper.GetCOSConnector(CREDENTIALS);
+                cos.InitToken();
+                output_data_references = new JArray();
+                output_data_references.Add(cos.GetDataReferences("log.txt"));
+            }
             long startTime = DateTime.Now.Ticks;
 
-            Job job = wml.CreateAndRunJob(deployment_id, input_data, null, null, null);
+            Job job = wml.CreateAndRunJob(deployment_id, input_data, null, null, output_data_references);
             if (!job.HasFailure())
             {
-                logger.Info("Log:" + GetLogFromJob(job)); // Don't log
-                logger.Info("Solution:" + GetSolutionFromJob(job));
+                if (useOutputDataReferences)
+                {
+                    GetLogFromCOS(cos); // Don't log
+                }
+                else
+                {
+                    logger.Info("Log:" + GetLogFromJob(job)); // Don't log
+                    logger.Info("Solution:" + GetSolutionFromJob(job));
+                }
                 long endTime = DateTime.Now.Ticks;
                 long totalTime = endTime - startTime;
                 logger.Info("Total time: " + (totalTime / 1000000000.0));
@@ -98,13 +129,15 @@ public class WMLSamples
         finally
         {
             if (wml != null) wml.End();
+            if (cos != null) cos.End();
         }
         wml.End();
     }
 
-    static void LPFlow()
+    static void LPFlow(bool useOutputDataReferences)
     {
         Connector wml = null;
+        COSConnector cos = null;
         try
         {
             logger.Info("Full flow with LP file");
@@ -113,12 +146,27 @@ public class WMLSamples
             wml.InitToken();
             String deployment_id = CreateAndDeployLPModel(wml);
             JArray input_data = new JArray();
+            JArray output_data_references = null;
+            if (useOutputDataReferences)
+            {
+                cos = WMLHelper.GetCOSConnector(CREDENTIALS);
+                cos.InitToken();
+                output_data_references = new JArray();
+                output_data_references.Add(cos.GetDataReferences("log.txt"));
+            }
             long startTime = DateTime.Now.Ticks;
-            Job job = wml.CreateAndRunJob(deployment_id, input_data, null, null, null);
+            Job job = wml.CreateAndRunJob(deployment_id, input_data, null, null, output_data_references);
             if (!job.HasFailure())
             {
-                logger.Info("Log:" + GetLogFromJob(job)); // Don't log
-                logger.Info("Solution:" + GetSolutionFromJob(job));
+                if (useOutputDataReferences)
+                {
+                    GetLogFromCOS(cos); // Don't log
+                }
+                else
+                {
+                    logger.Info("Log:" + GetLogFromJob(job)); // Don't log
+                    logger.Info("Solution:" + GetSolutionFromJob(job));
+                }
                 long endTime = DateTime.Now.Ticks;
                 long totalTime = endTime - startTime;
                 logger.Info("Total time: " + (totalTime / 1000000000.0));
@@ -137,6 +185,7 @@ public class WMLSamples
         finally
         {
             if (wml != null) wml.End();
+            if (cos != null) cos.End();
         }
         wml.End();
     }
@@ -153,6 +202,78 @@ public class WMLSamples
         logger.Info("deployment_id = " + deployment_id);
 
         return deployment_id;
+    }
+    static String CreateAndDeployWarehouseOPLModel(Connector wml)
+    {
+        logger.Info("Create Warehouse OPL Model");
+        String path = GetResourcePath() + Path.DirectorySeparatorChar + "warehouse.zip";
+
+        String model_id = wml.CreateNewModel("Warehouse", Runtime.DO_20_1, ModelType.OPL_20_1, path);
+        logger.Info("model_id = " + model_id);
+
+        String deployment_id = wml.DeployModel("warehouse-opl-test-wml-2", model_id, TShirtSize.S, 1);
+        logger.Info("deployment_id = " + deployment_id);
+
+        return deployment_id;
+    }
+
+    static void FullWarehouseOPLFlow(bool useOutputDataReferences)
+    {
+        Connector wml = null;
+        COSConnector cos = null;
+        try
+        {
+            logger.Info("Full Warehouse with OPL");
+
+            wml = WMLHelper.GetConnector(CREDENTIALS);
+            wml.InitToken();
+            String deployment_id = CreateAndDeployWarehouseOPLModel(wml);
+
+            cos = WMLHelper.GetCOSConnector(CREDENTIALS);
+            cos.InitToken();
+            String path = GetResourcePath() + Path.DirectorySeparatorChar + "warehouse.dat";
+
+            if (cos.PutFile("warehouse.dat", path) != null)
+            {
+                JArray input_data_references = new JArray();
+                input_data_references.Add(cos.GetDataReferences("warehouse.dat"));
+                JArray output_data_references = null;
+                if (useOutputDataReferences)
+                {
+                    output_data_references = new JArray();
+                    output_data_references.Add(cos.GetDataReferences("log.txt"));
+                }
+
+                Job job = wml.CreateAndRunJob(deployment_id, null, input_data_references, null, output_data_references);
+                if (!job.HasFailure())
+                {
+                    if (useOutputDataReferences)
+                    {
+                        logger.Info("Log:" + GetLogFromCOS(cos));
+                    }
+                    else
+                    {
+                        logger.Info("Log:" + GetLogFromJob(job));
+                    }
+                }
+                else
+                    logger.Info("Error in WML " + job.GetFailure());
+
+                wml.DeleteDeployment(deployment_id);
+            }
+            else
+                throw new ILOG.Concert.Exception("Error uploding in COS.");
+        }
+        catch (System.Exception e)
+        {
+            logger.Info("An error occured " + e.Message);
+        }
+        finally
+        {
+            if (wml != null) wml.End();
+            if (cos != null) cos.End();
+        }
+        wml.End();
     }
 
     static String GetResourcePath()
@@ -234,5 +355,7 @@ public class WMLSamples
         data.Add("values", all_values);
         return data;
     }
+
+
 
 }

@@ -11,3 +11,4 @@
 *.lp
 *.suo
 *.v2
+.DS_Store
