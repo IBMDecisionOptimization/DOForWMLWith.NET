@@ -11,6 +11,10 @@ namespace COM.IBM.ML.ILOG
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(WMLHelper));
 
+        public static String GetTimeStamp()
+        {
+            return DateTime.Now.ToString().Replace(" ", "-").Replace(":", "-").Replace("/", "-");
+        }
         public static String GetSettingOrDefault(String path, String defaultValue)
         {
             if (ConfigurationManager.AppSettings.AllKeys.Contains(path))
@@ -65,6 +69,10 @@ namespace COM.IBM.ML.ILOG
         public static Connector GetConnector(Credentials creds)
         {
             return new ConnectorImpl(creds);
+        }
+        public static COSConnector GetCOSConnector(Credentials creds)
+        {
+            return new COSConnectorImpl(creds);
         }
 
         public static ModelType GetCPLEXModelType(Runtime r)

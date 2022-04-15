@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="COM.IBM.ML.ILOG\COSConnector.cs" />
+    <Compile Include="COM.IBM.ML.ILOG\V4\COSConnector.cs" />
     <Compile Include="COM.IBM.ML.ILOG\WMLHelper.cs" />
     <Compile Include="COM.IBM.ML.ILOG\Credentials.cs" />
     <Compile Include="COM.IBM.ML.ILOG\TokenHandler.cs" />

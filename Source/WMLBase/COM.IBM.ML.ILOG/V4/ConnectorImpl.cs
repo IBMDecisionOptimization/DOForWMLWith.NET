@@ -20,41 +20,6 @@ namespace COM.IBM.ML.ILOG.V4
         private int wml_nodes;
         private string resultFormat;
 
-        public static string DECISION_OPTIMIZATION = "decision_optimization";
-        public static string SOLVE_STATE = "solve_state";
-        public static string FAILURE = "failure";
-
-        public static string SOLVE_STATUS = "solve_status";
-        public static string STATE = "state";
-        public static string STATUS = "status";
-        public static string ENTITY = "entity";
-        public static string DETAILS = "details";
-        public static string LATEST_ENGINE_ACTIVITY = "latest_engine_activity";
-        public static string OUTPUT_DATA = "output_data";
-        public static string CONTENT = "content";
-        public static string ID = "id";
-        public static string METADATA = "metadata";
-
-
-        public static string RESOURCES = "resources";
-        public static string NAME = "name";
-        public static string LOGS = "log.txt";
-
-        public static string MLV4 = "/ml/v4";
-        public static string MLV4_DEPLOYMENT_JOBS = MLV4 + "/deployment_jobs";
-        public static string MLV4_MODELS = MLV4 + "/models";
-        public static string MLV4_DEPLOYMENTS = MLV4 + "/deployments";
-        public static string MLV4_INSTANCES = MLV4 + "/instances";
-
-        public static string V2 = "/v2";
-        public static string V2_SOFTWARESPECS = V2 + "/software_specifications";
-        public static string V2_SPACES = V2 + "/spaces";
-        public static string V2_CATALOG = V2 + "/catalogs";
-
-
-        public static string COMPLETED = "completed";
-        public static string FAILED = "failed";
-        private string[] status = { COMPLETED, FAILED, "canceled", "Deleted" };
 
         private HashSet<String> completedStatus = new HashSet<String>() { COMPLETED, FAILED, "canceled", "Deleted" };
 
@@ -182,14 +147,10 @@ namespace COM.IBM.ML.ILOG.V4
             }
         }
 
-        private String GetTimeStamp()
-        {
-            return DateTime.Now.ToString().Replace(" ", "-").Replace(":", "-").Replace("/", "-");
-        }
 
         public byte[] BuildPayload(String deployment_id, String sav, String savFileName, JArray input_data, Dictionary<String, String> overriden_solve_parameters)
         {
-            String date = GetTimeStamp();
+            String date = WMLHelper.GetTimeStamp();
             if (exportPath != null)
             {
                 logger.Info("Exporting the WML DO input data in " + date);
@@ -465,7 +426,7 @@ namespace COM.IBM.ML.ILOG.V4
             logger.Info("Job final state is " + state);
             if (exportPath != null)
             {
-                String date = GetTimeStamp();
+                String date = WMLHelper.GetTimeStamp();
                 logger.Info("Dumping the WML output in " + date);
                 Directory.CreateDirectory(exportPath + "/" + date);
 
