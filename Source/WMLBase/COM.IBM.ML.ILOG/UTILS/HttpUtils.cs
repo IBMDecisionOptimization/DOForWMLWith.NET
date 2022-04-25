@@ -71,6 +71,7 @@ namespace COM.IBM.ML.ILOG.UTILS
         public static string V2_CATALOG = V2 + "/catalogs";
 
         public static string V2_CONNECTIONS = V2 + "/connections";
+        public static string V2_COS = V2 + "/datasource_types/cloudobjectstorage";
 
 
         public static string COMPLETED = "completed";
