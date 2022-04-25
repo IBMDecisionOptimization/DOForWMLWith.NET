@@ -102,7 +102,20 @@ namespace COM.IBM.ML.ILOG.V4
             return res;
         }
 
-        public string GetConnection()
+        private String GetS3Id()
+        {
+            Dictionary<String, String> parameters = GetWMLParams();
+            Dictionary<String, String> headers = GetPlatformHeaders();
+
+            String res = DoGet(
+                wml_credentials.Get(Credentials.PLATFORM_HOST),
+                V2_COS,
+                parameters, headers);
+            JObject json = ParseJson(res);
+
+            return json.Value<JObject>(METADATA).Value<String>(ASSET_ID);
+    }
+    public string GetConnection()
         {
             if (_connectionId != null)
                 return _connectionId;
@@ -114,10 +127,11 @@ namespace COM.IBM.ML.ILOG.V4
             String cos_access_key_id = wml_credentials.Get(Credentials.COS_ACCESS_KEY_ID);
             String cos_secret_access_key = wml_credentials.Get(Credentials.COS_SECRET_ACCESS_KEY);
             String cos_origin = wml_credentials.Get(Credentials.COS_ORIGIN_COUNTRY);
+            String cos_connId = GetS3Id();
             String url = wml_credentials.Get(Credentials.COS_ENDPOINT);
             String payload = "{\n" +
                     "\"name\": " + "\"s3_shared_cxn\"" + ",\n" +
-                    "\"datasource_type\": " + "\"4bf2dedd-3809-4443-96ec-b7bc5726c07b\"" + ",\n" +
+                    "\"datasource_type\": \"" + cos_connId + "\",\n" +
                     "\"origin_country\": \"" + cos_origin + "\",\n" +
                     "\"properties\": {\n" +
                     "\"access_key\": \"" + cos_access_key_id + "\",\n" +

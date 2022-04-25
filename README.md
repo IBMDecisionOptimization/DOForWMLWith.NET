@@ -232,6 +232,7 @@ To run the WML workflow examples, you will need to provide the variablesrelated 
    * COS_BUCKET: your bucket name.
    * COS_ACCESS_KEY: access key.
    * COS_SECRET_KEY: secret access key.
+   * COS_ORIGIN_COUNTRY: from the configuration of the bucket, in Bucket details, pick the location, for example "eu-de" if you find "Location eu-de".
 
 ## Library dependencies.
 
